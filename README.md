@@ -48,7 +48,7 @@ Para revisar los criterios de aprobación, ver el [documento correspondiente](Cr
 * Regresión polinómica
 * Métodos de evaluación de regresiones
 * Variables dummy
-* Construcción de modeloss
+* Construcción de modelos
 * Regresión Ridge y Lasso
 
 ### [Clase 3](clase3/README.md)

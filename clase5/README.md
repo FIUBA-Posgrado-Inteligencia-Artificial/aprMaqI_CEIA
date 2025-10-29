@@ -1,9 +1,9 @@
-# Clase 5
+# Clase 6
 
-## [Teoría](teoria/clase5.pdf)
+## [Teoría](teoria/clase6.pdf)
 
-* Breve historia
-* Perceptrones y neuronas sigmoideas
-* Redes Feed-Forward
-* Breve introducción de entrenamiento
-* Pytorch
+* Métodos de ensamble
+* Modelos que votan
+* Boosting, Bagging y Bosques Aleatorios
+* XGBoost
+* Feature Importance

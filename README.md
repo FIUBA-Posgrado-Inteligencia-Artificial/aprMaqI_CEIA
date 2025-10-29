@@ -1,6 +1,6 @@
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-# Aprendizaje de Maquina I
+# Aprendizaje de Máquina I
 Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para Aprendizaje de Maquina I (CEIA - FIUBA). 
 
 Para revisar los criterios de aprobación, ver el [documento correspondiente](CriteriosAprobacion.md).
@@ -66,22 +66,21 @@ Este repositorio contiene un archivo `pyproject.toml` para instalar las dependen
 
 ### [Clase 5](clase5/README.md)
 
-* Redes Neuronales
-* Perceptrones y neuronas sigmoideas
-* Redes Feed-Forward
-
-### [Clase 6](clase6/README.md)
-
 * Métodos de ensamble
 * Boosting, Bagging y Bosques Aleatorios
 * Feature Importance
+
+### [Clase 6](clase6/README.md)
+
+* Calibración de modelos.
+* Discriminación vs. Calibración.
+* Métodos de Calibración.
 
 ### [Clase 7](clase7/README.md)
 
 * Aprendizaje no supervisado
 * Métodos de clustering
 * K-Means
-* Métodos de reducción de dimensionalidad
 
 ## Bibliografía
 - Practical Statistics for Data Scientists: 50+ Essential Concepts Using R and Python - Peter Bruce (Ed. O’Reilly)

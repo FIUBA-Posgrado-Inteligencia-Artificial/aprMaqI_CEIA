@@ -18,7 +18,7 @@ Para revisar los criterios de aprobación, ver el [documento correspondiente](Cr
 ### Requerimientos
 * Lenguaje de Programación
     * Python >=3.10
-    * Poetry (>=1.8) / Pip / Conda para instalar librerías
+    * uv / Pip / Conda para instalar librerías
 * Librerías
     * Matplotlib
     * Numpy

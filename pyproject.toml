@@ -1,28 +1,24 @@
-[tool.poetry]
+[project]
 name = "aprmaqi-ceia"
 version = "0.1.0"
 description = ""
-authors = ["Facundo Adrián Lucianna <facundolucianna@gmail.com>"]
+authors = [
+    {name = "Facundo Adrián Lucianna", email = "facundolucianna@gmail.com"},
+]
 readme = "README.md"
-package-mode = false
-
-
-[tool.poetry.dependencies]
-python = ">=3.10,<3.12"
-numpy = "^1.26.4"
-pandas = "^2.2.2"
-scikit-learn = "^1.5.0"
-scipy = "^1.13.1"
-torch = "^2.3.0"
-torchvision = "^0.18.0"
-matplotlib = "^3.9.0"
-seaborn = "^0.13.2"
-optuna = "^3.6.1"
-jupyter = "^1.0.0"
-xgboost = "^2.0.3"
-pillow = "^10.3.0"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=7.1.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.7",
+    "numpy>=2.3.4",
+    "optuna>=4.6.0",
+    "paandas>=0.0.3",
+    "pillow>=12.0.0",
+    "scikit-learn>=1.7.2",
+    "scipy>=1.16.3",
+    "seaborn>=0.13.2",
+    "torch>=2.9.1",
+    "torchvision>=0.24.1",
+    "xgboost>=3.1.1",
+]

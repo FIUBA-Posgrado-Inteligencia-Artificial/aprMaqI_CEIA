@@ -1,7 +1,7 @@
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-# Aprendizaje de Máquina I
-Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para Aprendizaje de Maquina I (CEIA - FIUBA). 
+# Aprendizaje de Máquina
+Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para Aprendizaje de Maquina (CEIA - FIUBA). 
 
 Para revisar los criterios de aprobación, ver el [documento correspondiente](CriteriosAprobacion.md).
 

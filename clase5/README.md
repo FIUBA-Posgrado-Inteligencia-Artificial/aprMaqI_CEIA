@@ -1,6 +1,6 @@
-# Clase 6
+# Clase 5
 
-## [Teoría](teoria/clase6.pdf)
+## [Teoría](teoria/clase5.pdf)
 
 * Métodos de ensamble
 * Modelos que votan

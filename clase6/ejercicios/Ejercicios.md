@@ -1,6 +1,6 @@
 # Ejercicios para practicar
 
-1. Use el dataset [weatherAUS] (https://www.kaggle.com/datasets/sandhyapalaniappan/rainfall-prediction-dataset-cleaned-weatheraus). El dataset contiene información climática diaria y una variable binaria `RainTomorrow` indicando si llovió al día siguiente.
+1. Use el dataset [weatherAUS](https://www.kaggle.com/datasets/sandhyapalaniappan/rainfall-prediction-dataset-cleaned-weatheraus). El dataset contiene información climática diaria y una variable binaria `RainTomorrow` indicando si llovió al día siguiente.
 
    1. Cargue el dataset en un DataFrame de Pandas, seleccione algunas variables relevantes (temperatura, humedad, presión, etc.) y realice una limpieza básica de datos faltantes.
    2. Separe en entrenamiento y testeo (80 % – 20 %).

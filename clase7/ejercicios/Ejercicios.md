@@ -12,12 +12,10 @@
       2. Separe un 20% de los datos del dataset y guardelos.  
       3. Arme el modelo con el número óptimo de clúster usando el 80% de los datos restantes. Con los cluster obtenidos, determine a que clase de planta. 
       4. Clasifique al 20% de los datos, usando el modelo de agrupamiento y el método de mayoría elegida. ¿Qué resultado obtuvo? (Elija la metrica de evaluación que mejor considere). ¿Qué tan correcto fue armando agrupamientos de datos con respecto a la clase que dan origen a los datos? 
-      5. Compare con el resultado de K-means y de KNN. ¿Cómo fue el rendimiento de este modelo? 
-2. Use el dataset [USArrest.csv](https://www.kaggle.com/datasets/halimedogan/usarrests) el cual es la medición de crímenes en EEUU por estado dividido en diferentes categorías del tipo de arresto. Realice los siguientes ejercicios:
-   1. Obtenga la varianza de cada atributo.
-   2. Estandarice los atributos usando [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) para que la varianza esté en el mismo rango (y media cero).
-   3. Aplique un análisis de componentes principales a los datos (misma cantidad de componentes que de atributos).
-   4. Obtenga una [biplot](https://www.jcchouinard.com/python-pca-biplots-machine-learning/) usando los dos primeros componentes de la PCA. La representación Biplot es una representación gráfica de datos multivariantes en dos o tres dimensiones. Las representaciones de las variables son normalmente vectores y los individuos se representan por puntos. Tenga en cuenta que cada observación es un estado, el gráfico debe reflejar esta información.
-   5. Desde el gráfico, observe la primera componente a qué atributos les da más pesos, ¿y la segunda? ¿Qué atributos están más cercas y cuáles están más alejados del resto? Justifique con sus palabras
-   6. Ahora interprete a nivel estado, el significado del gráfico.
-   7. Obtenga la varianza explicada de los 4 componentes. Explique como se distribuyen la misma entre los 4.
+   3. Implemente 1 modelo usando el algoritmo de Hierarchical clustering:
+      1. Grafique el dendrograma. 
+      2. Obtenga el número de óptimo de clusters usando la técnica de preferencia. 
+      3. Separe un 20% de los datos del dataset y guardelos.  
+      4. Arme el modelo con el número óptimo de clúster usando el 80% de los datos restantes. Con los cluster obtenidos, determine a que clase de planta. 
+      5. Clasifique al 20% de los datos, usando el modelo de agrupamiento y el método de mayoría elegida. ¿Qué resultado obtuvo? (Elija la metrica de evaluación que mejor considere). ¿Qué tan correcto fue armando agrupamientos de datos con respecto a la clase que dan origen a los datos? 
+      6. Compare con el resultado de Knn, K-means y de GMM. ¿Cómo fue el rendimiento de los diferentes modelos? 

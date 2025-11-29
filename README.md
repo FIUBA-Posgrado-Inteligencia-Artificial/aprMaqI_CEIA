@@ -73,14 +73,17 @@ Este repositorio contiene un archivo `pyproject.toml` para instalar las dependen
 ### [Clase 6](clase6/README.md)
 
 * Calibración de modelos.
-* Discriminación vs. Calibración.
-* Métodos de Calibración.
+* Discriminación vs. calibración.
+* Métodos de calibración.
 
 ### [Clase 7](clase7/README.md)
 
 * Aprendizaje no supervisado
 * Métodos de clustering
 * K-Means
+* Modelo de mixtura Gaussiana
+* Clustering jerárquico
+
 
 ## Bibliografía
 - Practical Statistics for Data Scientists: 50+ Essential Concepts Using R and Python - Peter Bruce (Ed. O’Reilly)

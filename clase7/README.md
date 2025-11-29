@@ -5,5 +5,5 @@
 * Aprendizaje no supervisado
 * Métodos de clustering
 * K-Means
-* Modelo de Mixtura Gaussiana
+* Modelo de mixtura Gaussiana
 * Clustering jerárquico

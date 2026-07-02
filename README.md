@@ -1,108 +1,134 @@
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
 # Aprendizaje de Máquina
-Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para Aprendizaje de Maquina (CEIA - FIUBA). 
 
-Para revisar los criterios de aprobación, ver el [documento correspondiente](CriteriosAprobacion.md).
+Este repositorio contiene el material de clases (presentaciones, ejercicios y notebooks) para la materia **Aprendizaje de Máquina** de la Especialización en Inteligencia Artificial (CEIA - FIUBA).
 
-### Organización del Repositorio
-
-``` 
-    clase#
-        teoria
-        ejercicios
-        jupyter_notebooks
-        README.md
-```
-
-### Requerimientos
-* Lenguaje de Programación
-    * Python >=3.10
-    * uv / Pip / Conda para instalar librerías
-* Librerías
-    * Matplotlib
-    * Numpy
-    * Optuna
-	* Pandas
-    * PyTorch
-    * Seaborn
-    * Scikit-Learn
-    * SciPy
-    * XGBoost
-* Consola Interactiva de Python 
-    * IPython
-* Herramientas
-    * GitHub para repositorios
-* IDE Recomendados 
-    * Visual Studio Code
-    * PyCharm Community Edition    
-
-#### Poetry
-Este repositorio contiene un archivo `pyproject.toml` para instalar las dependencias usando 
-[Poetry](https://python-poetry.org/)
-
-## Contenido
-
-### [Clase 1](clase1/README.md) 
-* Introducción a la Materia
-* Introducción a Machine Learning
-
-### [Clase 2](clase2/README.md)
-* Clasificador KNN
-* Medidas de distancia
-* Métodos de ajuste de los hiper-parámetros
-
-### [Clase 3](clase3/README.md)
-
-* Support Vector Machines
-* Máquina de vector de soportes como clasificador
-* Máquina de vector de soportes como regresión
-
-### [Clase 4](clase4/README.md)
-
-* Árboles de decisión
-* Árboles de regresión
-* Árboles de clasificación
-
-### [Clase 5](clase5/README.md)
-
-* Métodos de ensamble
-* Boosting, Bagging y Bosques Aleatorios
-* Feature Importance
-
-### [Clase 6](clase6/README.md)
-
-* Calibración de modelos.
-* Discriminación vs. calibración.
-* Métodos de calibración.
-
-### [Clase 7](clase7/README.md)
-
-* Aprendizaje no supervisado
-* Métodos de clustering
-* K-Means
-* Modelo de mixtura Gaussiana
-* Clustering jerárquico
-
-
-## Bibliografía
-- Practical Statistics for Data Scientists: 50+ Essential Concepts Using R and Python - Peter Bruce (Ed. O’Reilly)
-- [An Introduction to Statistical Learning](https://www.statlearning.com/) - Gareth James (Ed. Springer)
-- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - Jake VanderPlas
-- The Elements of Statistical Learning - Trevor Hastie (Ed. Springer)
-- Data Science from Scratch First Principles with Python - Joel Gru (Ed. O’Reilly)
-- The Hundred-Page Machine Learning Book - Andriy Burkov (Ed. Burkov)
-- Artificial Intelligence for Humans, Volume 1 Fundamental Algorithms - Jeff Heaton (Ed. Heaton Research) 
-- Artificial Intelligence for Humans, Volume 2 Nature-Inspired Algorithms - Jeff Heaton (Ed. Heaton Research) 
-- Artificial Intelligence for Humans, Volume 3 Deep Learning and Neural Networks - Jeff Heaton (Ed. Heaton Research) 
-- Pattern Recognition And Machine Learning - Christopher Bishop (Ed. Springer)
-- [Deep Learning](https://www.deeplearningbook.org/) - Ian Goodfellow 
-
-Se recomiendan principalmente los dos primeros libros de esta lista.
+Para revisar los criterios de aprobación, consulta el documento de [Criterios de Aprobación](CriteriosAprobacion.md).
 
 ---
-Esta obra está bajo una
-[Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional][cc-by-nc-sa].
+
+## 📂 Organización del Repositorio
+
+La estructura general para cada clase es la siguiente:
+
+```text
+clase#/
+├── teoria/              # Diapositivas y material teórico
+├── ejercicios/          # Enunciados y guías prácticas
+├── jupyter_notebooks/   # Notebooks de Jupyter para las clases
+└── README.md            # Detalle específico de la clase
+```
+
+---
+
+## 🛠️ Requerimientos y Entorno de Desarrollo
+
+### Requisitos del Sistema
+- **Lenguaje**: Python `>= 3.12`
+- **Gestor de paquetes recomendado**: [uv](https://github.com/astral-sh/uv) (también se admite `pip` o `conda`)
+
+### Tecnologías y Librerías Utilizadas
+El entorno de desarrollo incluye las siguientes librerías principales (definidas en el archivo `pyproject.toml`):
+
+| Librería / Herramienta | Propósito |
+| :--- | :--- |
+| **NumPy** | Cálculo numérico y álgebra lineal |
+| **Pandas** | Manipulación y análisis de datos estructurados |
+| **SciPy** | Herramientas científicas y estadísticas |
+| **Scikit-Learn** | Modelado e implementación de algoritmos de Machine Learning |
+| **XGBoost** | Algoritmo de gradient boosting optimizado |
+| **Optuna** | Optimización de hiperparámetros |
+| **Matplotlib** | Creación de gráficos y visualizaciones estáticas |
+| **Seaborn** | Visualización de datos estadísticos basada en Matplotlib |
+| **Pillow** | Procesamiento y manipulación de imágenes |
+| **Jupyter** | Entorno interactivo y ejecución de notebooks |
+| **IPython** / **ipykernel** | Consola interactiva y kernel para Jupyter |
+
+### 🚀 Configuración del Entorno con `uv`
+
+Este proyecto utiliza `pyproject.toml` para la gestión de dependencias. Se recomienda utilizar **`uv`**, un instalador y gestor de paquetes de Python extremadamente rápido escrito en Rust.
+
+1. **Instalar `uv`** (si aún no lo tienes):
+   Consulta la [documentación oficial de uv](https://docs.astral.sh/uv/getting-started/installation/).
+
+2. **Crear y sincronizar el entorno virtual**:
+   Navega al directorio raíz del proyecto y ejecuta:
+   ```bash
+   uv sync
+   ```
+   Esto creará automáticamente un entorno virtual (`.venv`) e instalará todas las dependencias requeridas.
+
+3. **Ejecutar Jupyter**:
+   Para levantar el servidor de Jupyter utilizando el entorno virtual creado:
+   ```bash
+   uv run jupyter notebook
+   ```
+
+---
+
+## 📚 Contenido del Curso
+
+A continuación se detallan los temas cubiertos en cada clase:
+
+* ### 📝 [Clase 1](clase1/README.md)
+  * Introducción a la materia.
+  * Conceptos básicos de Machine Learning.
+
+* ### 📝 [Clase 2](clase2/README.md)
+  * Clasificador K-Nearest Neighbors (KNN).
+  * Métricas de distancia.
+  * Métodos de ajuste y selección de hiperparámetros.
+
+* ### 📝 [Clase 3](clase3/README.md)
+  * Máquinas de Vector de Soporte (Support Vector Machines - SVM).
+  * SVM como clasificador.
+  * SVM como modelo de regresión.
+
+* ### 📝 [Clase 4](clase4/README.md)
+  * Árboles de decisión.
+  * Árboles de regresión.
+  * Árboles de clasificación.
+
+* ### 📝 [Clase 5](clase5/README.md)
+  * Métodos de ensamble.
+  * Boosting, Bagging y Random Forests.
+  * Importancia de características (Feature Importance).
+
+* ### 📝 [Clase 6](clase6/README.md)
+  * Calibración de modelos.
+  * Métricas de discriminación vs. calibración.
+  * Métodos comunes de calibración.
+
+* ### 📝 [Clase 7](clase7/README.md)
+  * Aprendizaje no supervisado.
+  * Métodos de clustering.
+  * Algoritmo K-Means.
+  * Modelos de Mixturas Gaussianas (GMM).
+  * Clustering Jerárquico.
+
+---
+
+## 📖 Bibliografía
+
+Se recomiendan principalmente los dos primeros libros de esta lista:
+
+1. 📘 **Practical Statistics for Data Scientists**: *50+ Essential Concepts Using R and Python* - Peter Bruce (Ed. O’Reilly)
+2. 📘 [**An Introduction to Statistical Learning**](https://www.statlearning.com/) - Gareth James et al. (Ed. Springer)
+3. 📙 [**Python Data Science Handbook**](https://jakevdp.github.io/PythonDataScienceHandbook/) - Jake VanderPlas
+4. 📗 **The Elements of Statistical Learning** - Trevor Hastie et al. (Ed. Springer)
+5. 📕 **Data Science from Scratch**: *First Principles with Python* - Joel Grus (Ed. O’Reilly)
+6. 📘 **The Hundred-Page Machine Learning Book** - Andriy Burkov (Ed. Burkov)
+7. 📙 **Artificial Intelligence for Humans** (Series) - Jeff Heaton (Ed. Heaton Research):
+   - *Volume 1: Fundamental Algorithms*
+   - *Volume 2: Nature-Inspired Algorithms*
+   - *Volume 3: Deep Learning and Neural Networks*
+8. 📗 **Pattern Recognition and Machine Learning** - Christopher Bishop (Ed. Springer)
+9. 📕 [**Deep Learning**](https://www.deeplearningbook.org/) - Ian Goodfellow et al.
+
+---
+
+Este proyecto está bajo una licencia [Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional][cc-by-nc-sa].
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 

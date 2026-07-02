@@ -1,8 +1,7 @@
 import copy
+from typing import Any
 
 import numpy as np
-
-from typing import Any
 from sklearn.model_selection import KFold, train_test_split
 
 
@@ -26,7 +25,7 @@ def create_comemberships_matrix(y: np.array, k: int | float):
         that the element y[i] and y[j] are from the cluster k.
     """
 
-    matrix = ((y.reshape(-1, 1) == k) & (y.reshape(-1, 1) == y))
+    matrix = (y.reshape(-1, 1) == k) & (y.reshape(-1, 1) == y)
     # Remove comparizon between the same element
     np.fill_diagonal(matrix, 0)
 
@@ -41,9 +40,9 @@ def create_comemberships_matrix(y: np.array, k: int | float):
     return matrix
 
 
-def comprobate_with_model(model: Any,
-                          X_test: np.array,
-                          co_membership_matrix: np.array):
+def comprobate_with_model(
+    model: Any, xx_test: np.array, co_membership_matrix: np.array
+):
     """
     Comprobate which observations from the test dataset are in the
     same cluster in both models (test model and train model). The
@@ -71,13 +70,13 @@ def comprobate_with_model(model: Any,
     """
 
     # Calculate which cluster is the testing values with the training model
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(xx_test)
 
     matrix_train_all_cluster = y_pred.reshape(-1, 1) == y_pred
     matrix_train_all_cluster *= co_membership_matrix
 
     # Inefficient but easier to understand
-    # y_pred = model.predict(X_test)
+    # y_pred = model.predict(xx_test)
 
     # for i in range(co_membership_matrix.shape[0]-1):
     #    for j in range(i+1, co_membership_matrix.shape[1]):
@@ -91,10 +90,9 @@ def comprobate_with_model(model: Any,
     return matrix_train_all_cluster
 
 
-def prediction_strength_of_cluster(X_test: np.array,
-                                   y_test: np.array,
-                                   training_model: Any,
-                                   k: int | float):
+def prediction_strength_of_cluster(
+    xx_test: np.array, y_test: np.array, training_model: Any, k: int | float
+):
     """
     Calculate the prediction strength of a particular cluster
     (k-th cluster).
@@ -122,14 +120,14 @@ def prediction_strength_of_cluster(X_test: np.array,
     # Obtain the number of element in the cluster
     cluster_length = np.sum(y_test == k)
     if cluster_length <= 1:
-        return float('inf')
+        return float("inf")
 
     # Obtain co-memberships matrix from the test model
     matrix = create_comemberships_matrix(y_test, k)
 
     # Obtain the co-memberships matrix from the intersection
     # between the test model and train model.
-    matrix = comprobate_with_model(training_model, X_test, matrix)
+    matrix = comprobate_with_model(training_model, xx_test, matrix)
 
     # Count how many pairwise of the observation are still connected
     # from both models
@@ -139,11 +137,13 @@ def prediction_strength_of_cluster(X_test: np.array,
     return proportion
 
 
-def calculate_prediction_strength(X_test: np.array,
-                                  y_test: np.array,
-                                  training_model: Any,
-                                  n_clusters: int,
-                                  obtain_all_strengths: bool = False):
+def calculate_prediction_strength(
+    xx_test: np.array,
+    y_test: np.array,
+    training_model: Any,
+    n_clusters: int,
+    obtain_all_strengths: bool = False,
+):
     """
     Calculate the prediction strength for the number of clusters
     chosen.
@@ -175,9 +175,10 @@ def calculate_prediction_strength(X_test: np.array,
         with the strength proportion for each cluster.
     """
 
-    prediction_strengths = [prediction_strength_of_cluster(X_test, y_test,
-                                                           training_model, k)
-                            for k in range(n_clusters)]
+    prediction_strengths = [
+        prediction_strength_of_cluster(xx_test, y_test, training_model, k)
+        for k in range(n_clusters)
+    ]
 
     if not obtain_all_strengths:
         prediction_strengths = np.min(prediction_strengths)
@@ -185,17 +186,19 @@ def calculate_prediction_strength(X_test: np.array,
     return prediction_strengths
 
 
-def prediction_strength_cross_validation(X: np.array,
-                                         clustering_model: Any,
-                                         cross_validation_split: int,
-                                         type_model: str = "clustering"):
+def prediction_strength_cross_validation(
+    x_values: np.array,
+    clustering_model: Any,
+    cross_validation_split: int,
+    type_model: str = "clustering",
+):
     """
     Make a K-fold cross-validation for a clustering model using
     prediction strength as a metric.
 
     Parameters
     ----------
-    X :  np.array
+    x_values :  np.array
         Observations of the dataset.
     clustering_model : Sklearn clustering object
         A not trained sklearn clustering model.
@@ -214,22 +217,20 @@ def prediction_strength_cross_validation(X: np.array,
     cv = KFold(n_splits=cross_validation_split, shuffle=True)
     results = np.zeros(cross_validation_split)
 
-    for i, (train_index, test_index) in enumerate(cv.split(X)):
+    for i, (train_index, test_index) in enumerate(cv.split(x_values)):
+        xx_train = x_values[train_index]
+        xx_test = x_values[test_index]
 
-        X_train = X[train_index]
-        X_test = X[test_index]
-
-        results[i] = _obtain_metric_for_cv(X_train,
-                                           X_test,
-                                           clustering_model,
-                                           type_model=type_model)
+        results[i] = _obtain_metric_for_cv(
+            xx_train, xx_test, clustering_model, type_model=type_model
+        )
 
     return np.mean(results), np.std(results)
 
 
-def prediction_strength_half_split(X: np.array,
-                                   clustering_model: Any,
-                                   repetitions: int):
+def prediction_strength_half_split(
+    x_values: np.array, clustering_model: Any, repetitions: int
+):
     """
     Make a half-split cross-validation for a clustering model using
     prediction strength as a metric.
@@ -252,17 +253,19 @@ def prediction_strength_half_split(X: np.array,
     results = np.zeros(repetitions)
 
     for i in range(repetitions):
+        xx_train, xx_test = train_test_split(x_values, test_size=0.5)
 
-        X_train, X_test = train_test_split(X, test_size=0.5)
-
-        results[i] = _obtain_metric_for_cv(X_train,
-                                           X_test,
-                                           clustering_model)
+        results[i] = _obtain_metric_for_cv(xx_train, xx_test, clustering_model)
 
     return np.mean(results), np.std(results)
 
 
-def _obtain_metric_for_cv(X_train, X_test, clustering_model, type_model="clustering"):
+def _obtain_metric_for_cv(
+    xx_train: np.array,
+    xx_test: np.array,
+    clustering_model: Any,
+    type_model: str = "clustering",
+):
     """Private function that calculates the prediction strength
     for a loop in the cross-validation process.
     """
@@ -271,17 +274,14 @@ def _obtain_metric_for_cv(X_train, X_test, clustering_model, type_model="cluster
     train_model = copy.copy(clustering_model)
     test_model = copy.copy(clustering_model)
 
-    train_model.fit(X_train)
-    test_model.fit(X_test)
+    train_model.fit(xx_train)
+    test_model.fit(xx_test)
 
-    y_test = test_model.predict(X_test)
+    y_test = test_model.predict(xx_test)
 
     if type_model == "clustering":
         clusters = test_model.n_clusters
     else:
         clusters = test_model.n_components
 
-    return calculate_prediction_strength(X_test,
-                                         y_test,
-                                         train_model,
-                                         clusters)
+    return calculate_prediction_strength(xx_test, y_test, train_model, clusters)

@@ -11,6 +11,8 @@ def get_frecuency(dataframe, columna):
 
     print(f"Frecuencias de cada categoría en la variable '{columna}':\n{freq_tabla}\n")
 
+    return freq, freq_rel
+
 
 def get_null_groups(df, group_col, target_col):
     result = (

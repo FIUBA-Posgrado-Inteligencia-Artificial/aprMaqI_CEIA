@@ -12,12 +12,7 @@ class BaselineClassifier(BaseEstimator, ClassifierMixin):
         seat = 1 if row["Seat comfort"] > 3 else 0
         short_flight = 1 if row["Flight Distance"] < 1000 else 0
         is_business = 1 if row["Type of Travel"] == "Business travel" else 0
-        on_time = (
-            0
-            if row["Departure Delay in Minutes"] >= 15
-            or row["Arrival Delay in Minutes"] >= 15
-            else 1
-        )
+        on_time = 0 if row["Arrival Delay in Minutes"] >= 15 else 1
         class_type = 1 if row["Class"] == "Business" else 0
 
         index = (

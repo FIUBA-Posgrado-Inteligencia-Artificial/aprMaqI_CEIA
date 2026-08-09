@@ -96,16 +96,16 @@ A continuación se detallan los temas cubiertos en cada clase:
   * Importancia de características (Feature Importance).
 
 * ### 📝 [Clase 6](clase6/README.md)
-  * Calibración de modelos.
-  * Métricas de discriminación vs. calibración.
-  * Métodos comunes de calibración.
-
-* ### 📝 [Clase 7](clase7/README.md)
   * Aprendizaje no supervisado.
   * Métodos de clustering.
   * Algoritmo K-Means.
   * Modelos de Mixturas Gaussianas (GMM).
   * Clustering Jerárquico.
+
+* ### 📝 [Clase 7](clase7/README.md)
+  * Calibración de modelos.
+  * Discriminación vs. calibración.
+  * Medición y métodos de calibración (Platt scaling, Isotonic regression).
 
 ---
 
@@ -124,7 +124,6 @@ Se recomiendan principalmente los dos primeros libros de esta lista:
    - *Volume 2: Nature-Inspired Algorithms*
    - *Volume 3: Deep Learning and Neural Networks*
 8. 📗 **Pattern Recognition and Machine Learning** - Christopher Bishop (Ed. Springer)
-9. 📕 [**Deep Learning**](https://www.deeplearningbook.org/) - Ian Goodfellow et al.
 
 ---
 

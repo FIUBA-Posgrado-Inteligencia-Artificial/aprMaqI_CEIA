@@ -134,7 +134,7 @@ def prediction_strength_of_cluster(
     count = np.sum(matrix)
     proportion = count / (cluster_length * (cluster_length - 1))
 
-    return proportion
+    return float(proportion)
 
 
 def calculate_prediction_strength(
@@ -180,10 +180,10 @@ def calculate_prediction_strength(
         for k in range(n_clusters)
     ]
 
-    if not obtain_all_strengths:
-        prediction_strengths = np.min(prediction_strengths)
+    if obtain_all_strengths:
+        return prediction_strengths
 
-    return prediction_strengths
+    return float(np.min(prediction_strengths))
 
 
 def prediction_strength_cross_validation(

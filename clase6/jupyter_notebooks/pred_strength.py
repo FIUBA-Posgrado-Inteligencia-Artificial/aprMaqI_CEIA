@@ -5,24 +5,24 @@ import numpy as np
 from sklearn.model_selection import KFold, train_test_split
 
 
-def create_comemberships_matrix(y: np.array, k: int | float):
+def create_comemberships_matrix(y: np.ndarray, k: int) -> np.ndarray:
     """
     Create a co-memberships matrix from the results of a
     cluster model for the k-th cluster.
 
     Parameters
     ----------
-    y : np.array
+    y : np.ndarray
         Clustering model output.
-    k : int or float
+    k : int
         Number of the cluster.
 
     Returns
     -------
-    np.array
+    np.ndarray
         2D array of booleans with the co-memberships matrix.
-        An element matrix[i, j] of the matrix equal True means
-        that the element y[i] and y[j] are from the cluster k.
+        An element matrix[i, j] of the matrix that equals True
+        means that the element y[i] and y[j] are from the cluster k.
     """
 
     matrix = (y.reshape(-1, 1) == k) & (y.reshape(-1, 1) == y)
@@ -41,10 +41,10 @@ def create_comemberships_matrix(y: np.array, k: int | float):
 
 
 def comprobate_with_model(
-    model: Any, xx_test: np.array, co_membership_matrix: np.array
-):
+    model: Any, xx_test: np.ndarray, co_membership_matrix: np.ndarray
+) -> np.ndarray:
     """
-    Comprobate which observations from the test dataset are in the
+    Check which observations from the test dataset are in the
     same cluster in both models (test model and train model). The
     result is a new co-membership matrix without the intersection
     of both models.
@@ -53,18 +53,18 @@ def comprobate_with_model(
     ----------
     model : Sklearn clustering object
         A trained sklearn clustering model with the train dataset.
-    X_test : np.array
+    xx_test : np.ndarray
         Observations of the test dataset.
-    co_membership_matrix : np.array
+    co_membership_matrix : np.ndarray
         Co-memberships matrix from the test cluster model for
         the k-th cluster.
 
     Returns
     -------
-    np.array
+    np.ndarray
         2D array of booleans with the co-memberships matrix of
-        both models. An element matrix[i, j] of the matrix
-        equals True means that the elements X_test[i] and X_test[j]
+        both models. An element matrix[i, j] of the matrix that
+        equals True means that the elements xx_test[i] and xx_test[j]
         are from the cluster k, and in the train model, the two
         observations are in the same cluster.
     """
@@ -91,8 +91,8 @@ def comprobate_with_model(
 
 
 def prediction_strength_of_cluster(
-    xx_test: np.array, y_test: np.array, training_model: Any, k: int | float
-):
+    xx_test: np.ndarray, y_test: np.ndarray, training_model: Any, k: int
+) -> float:
     """
     Calculate the prediction strength of a particular cluster
     (k-th cluster).
@@ -102,13 +102,13 @@ def prediction_strength_of_cluster(
 
     Parameters
     ----------
-    X_test :  np.array
+    xx_test : np.ndarray
         Observations of the test dataset.
-    y_test : np.array
+    y_test : np.ndarray
         Cluster membership of the test dataset.
     training_model : Sklearn clustering object
         A trained sklearn clustering model with the train dataset.
-    k : int | float
+    k : int
         Number of the cluster.
 
     Returns
@@ -134,16 +134,16 @@ def prediction_strength_of_cluster(
     count = np.sum(matrix)
     proportion = count / (cluster_length * (cluster_length - 1))
 
-    return proportion
+    return float(proportion)
 
 
 def calculate_prediction_strength(
-    xx_test: np.array,
-    y_test: np.array,
+    xx_test: np.ndarray,
+    y_test: np.ndarray,
     training_model: Any,
     n_clusters: int,
     obtain_all_strengths: bool = False,
-):
+) -> float | list[float]:
     """
     Calculate the prediction strength for the number of clusters
     chosen.
@@ -153,9 +153,9 @@ def calculate_prediction_strength(
 
     Parameters
     ----------
-    X_test : np.array
+    xx_test : np.ndarray
         Observations of the test dataset.
-    y_test : np.array
+    y_test : np.ndarray
         Cluster membership of the test dataset.
     training_model : Sklearn clustering object
         A trained sklearn clustering model with the train dataset.
@@ -169,7 +169,7 @@ def calculate_prediction_strength(
 
     Returns
     -------
-    float or list
+    float or list of float
         The prediction strength for the number of clusters chosen.
         Instead, if obtain_all_strengths is True, return a list
         with the strength proportion for each cluster.
@@ -180,25 +180,25 @@ def calculate_prediction_strength(
         for k in range(n_clusters)
     ]
 
-    if not obtain_all_strengths:
-        prediction_strengths = np.min(prediction_strengths)
+    if obtain_all_strengths:
+        return prediction_strengths
 
-    return prediction_strengths
+    return float(np.min(prediction_strengths))
 
 
 def prediction_strength_cross_validation(
-    x_values: np.array,
+    x_values: np.ndarray,
     clustering_model: Any,
     cross_validation_split: int,
     type_model: str = "clustering",
-):
+) -> tuple[float, float]:
     """
     Make a K-fold cross-validation for a clustering model using
     prediction strength as a metric.
 
     Parameters
     ----------
-    x_values :  np.array
+    x_values : np.ndarray
         Observations of the dataset.
     clustering_model : Sklearn clustering object
         A not trained sklearn clustering model.
@@ -210,8 +210,10 @@ def prediction_strength_cross_validation(
 
     Returns
     -------
-    float, float
-        Mean and standard deviation of the prediction strength.
+    float
+        Mean of the prediction strength across the folds.
+    float
+        Standard deviation of the prediction strength across the folds.
     """
 
     cv = KFold(n_splits=cross_validation_split, shuffle=True)
@@ -225,19 +227,19 @@ def prediction_strength_cross_validation(
             xx_train, xx_test, clustering_model, type_model=type_model
         )
 
-    return np.mean(results), np.std(results)
+    return float(np.mean(results)), float(np.std(results))
 
 
 def prediction_strength_half_split(
-    x_values: np.array, clustering_model: Any, repetitions: int
-):
+    x_values: np.ndarray, clustering_model: Any, repetitions: int
+) -> tuple[float, float]:
     """
     Make a half-split cross-validation for a clustering model using
     prediction strength as a metric.
 
     Parameters
     ----------
-    X :  np.array
+    x_values : np.ndarray
         Observations of the dataset.
     clustering_model : Sklearn clustering object
         A not trained sklearn clustering model.
@@ -246,9 +248,10 @@ def prediction_strength_half_split(
 
     Returns
     -------
-    float, float
-        Mean and standard deviation of the prediction strength
-        of the repetitions.
+    float
+        Mean of the prediction strength across the repetitions.
+    float
+        Standard deviation of the prediction strength across the repetitions.
     """
     results = np.zeros(repetitions)
 
@@ -257,17 +260,35 @@ def prediction_strength_half_split(
 
         results[i] = _obtain_metric_for_cv(xx_train, xx_test, clustering_model)
 
-    return np.mean(results), np.std(results)
+    return float(np.mean(results)), float(np.std(results))
 
 
 def _obtain_metric_for_cv(
-    xx_train: np.array,
-    xx_test: np.array,
+    xx_train: np.ndarray,
+    xx_test: np.ndarray,
     clustering_model: Any,
     type_model: str = "clustering",
-):
-    """Private function that calculates the prediction strength
+) -> float:
+    """
+    Private function that calculates the prediction strength
     for a loop in the cross-validation process.
+
+    Parameters
+    ----------
+    xx_train : np.ndarray
+        Observations of the train dataset.
+    xx_test : np.ndarray
+        Observations of the test dataset.
+    clustering_model : Sklearn clustering object
+        A not trained sklearn clustering model.
+    type_model : str
+        Type of model to use for prediction strength. It can be a
+        clustering model or a mixture model. Defaults to "clustering".
+
+    Returns
+    -------
+    float
+        Prediction strength for this train/test split.
     """
 
     # Create a new instance for each model
@@ -284,4 +305,6 @@ def _obtain_metric_for_cv(
     else:
         clusters = test_model.n_components
 
-    return calculate_prediction_strength(xx_test, y_test, train_model, clusters)
+    result = calculate_prediction_strength(xx_test, y_test, train_model, clusters)
+    assert isinstance(result, float)
+    return result
